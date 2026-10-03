@@ -1,7 +1,7 @@
-# Daily City Desk – News Portal (Job 02)
+# Daily Subarnachar – News Portal (Job 02)
 ## সেটআপ, ডাটাবেজ ইম্পোর্ট এবং রান করার সম্পূর্ণ নির্দেশিকা
 
-এই ডকুমেন্টটিতে **Daily City Desk** নিউজ পোর্টাল প্রজেক্টটি লোকাল সার্ভারে (WAMP অথবা XAMPP) কীভাবে সেটআপ করবেন, ডাটাবেজ ইম্পোর্ট করবেন এবং ব্রাউজারে রান করবেন তা বিস্তারিত বাংলায় ধাপে ধাপে বর্ণনা করা হলো।
+এই ডকুমেন্টটিতে **Daily Subarnachar** নিউজ পোর্টাল প্রজেক্টটি লোকাল সার্ভারে (WAMP অথবা XAMPP) কীভাবে সেটআপ করবেন, ডাটাবেজ ইম্পোর্ট করবেন এবং ব্রাউজারে রান করবেন তা বিস্তারিত বাংলায় ধাপে ধাপে বর্ণনা করা হলো।
 
 ---
 
@@ -18,24 +18,24 @@
 প্রজেক্ট ফোল্ডারটি আপনার লোকাল সার্ভারের রুট ডিরেক্টরিতে থাকতে হবে:
 
 - **WAMP ব্যবহারকারীদের জন্য:**  
-  ফোল্ডার পাথ: `C:\wamp64\www\daily-city-desk` (অথবা `C:\wamp64\www\job2`)
+  ফোল্ডার পাথ: `C:\wamp64\www\daily-subarnachar` (অথবা `C:\wamp64\www\job2`)
 - **XAMPP ব্যবহারকারীদের জন্য:**  
-  ফোল্ডার পাথ: `C:\xampp\htdocs\daily-city-desk`
+  ফোল্ডার পাথ: `C:\xampp\htdocs\daily-subarnachar`
 
 ### ফাইল কাঠামো:
 ```text
-daily-city-desk/
+daily-subarnachar/
 │
 ├── index.php             # হোমপেজ (ডাইনামিক নিউজ, সার্চ, API ফেচ সেকশন)
-├── add.php               # নতুন নিউজ যুক্ত করার ফর্ম
+├── add.php               # নতুন নিউজ যুক্ত করার আধুনিক ফর্ম
 ├── config.php            # ডাটাবেজ কানেকশন ফাইল (PDO)
 ├── daily_city_desk.sql   # ডাটাবেজ স্কিমা ও প্রাথমিক ডেটা
 ├── plant.txt             # প্রজেক্ট ও টেস্টিং প্ল্যান ফাইল
-├── style.css             # সাইটের ডিজাইন ও সিএসএস স্টাইল
+├── style.css             # প্রিমিয়াম এডিটোরিয়াল ডিজাইন ও সিএসএস স্টাইল
 ├── README.md             # প্রজেক্ট নির্দেশিকা ফাইল
 │
 ├── images/
-│   └── news-image.jpg    # সাইটের ব্যানার ইমেজ (Alt ট্যাগ সহ)
+│   └── news-image.jpg    # Daily Subarnachar ব্যানার ইমেজ (Alt ট্যাগ সহ)
 │
 └── api/
     └── news.php          # JSON API এন্ডপয়েন্ট
@@ -49,30 +49,13 @@ daily-city-desk/
 ১. ব্রাউজার ওপেন করে যান: **`http://localhost/phpmyadmin`**  
 ২. বাম পাশের মেন্যু থেকে **`New`** বাটনে ক্লিক করুন।  
 ৩. Database name লিখুন: **`daily_city_desk`**  
-   - Collation সিলেক্ট করুন: `utf8mb4_unicode_ci` বা `utf8mb4_general_ci`  
+   - Collation সিলেক্ট করুন: `utf8mb4_unicode_ci`  
    - এরপর **`Create`** বাটনে ক্লিক করুন।  
 ৪. তৈরি হওয়া `daily_city_desk` ডাটাবেজটির ওপর ক্লিক করে সিলেক্ট করুন।  
 ৫. উপরের মেনু থেকে **`Import`** ট্যাবে ক্লিক করুন।  
 ৬. **Choose File / Browse** এ ক্লিক করে প্রজেক্ট ফোল্ডার থেকে **`daily_city_desk.sql`** ফাইলটি সিলেক্ট করুন।  
 ৭. নিচে স্ক্রল করে **`Import`** (বা **`Go`**) বাটনে ক্লিক করুন।  
-   - সফলভাবে ইম্পোর্ট হলে ৩টি টেবিল তৈরি হবে: `category`, `reporter`, এবং `news`।
-
----
-
-### পদ্ধতি ২: MySQL Console / Command Prompt দিয়ে
-কমান্ড প্রম্পট (CMD) বা টার্মিনালে নিচের কমান্ডগুলো চালান:
-
-```bash
-# MySQL এ লগইন করুন (পাসওয়ার্ড না থাকলে শুধু এন্টার চাপুন)
-mysql -u root -p
-
-# ডাটাবেজ তৈরি করুন
-CREATE DATABASE daily_city_desk CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-EXIT;
-
-# SQL ফাইল ইম্পোর্ট করুন
-mysql -u root daily_city_desk < "C:\wamp64\www\daily-city-desk\daily_city_desk.sql"
-```
+   - সফলভাবে ইম্পোর্ট হলে ৩টি টেবিল তৈরি হবে: `category`, `reporter`, এবং `news` (ডেসক্রিপশন ফিল্ড সহ)।
 
 ---
 
@@ -87,8 +70,6 @@ $username = 'root';            // ডিফল্ট ইউজারনেম
 $password = '';                // XAMPP/WAMP এর ডিফল্ট পাসওয়ার্ড সাধারণত ফাঁকা থাকে
 ```
 
-> **টিপস:** যদি আপনার MySQL রুট ইউজারে কোনো পাসওয়ার্ড সেট করা থাকে, তবে `$password = 'your_password';` দিয়ে আপডেট করে নিন।
-
 ---
 
 ## ৫. লোকাল সার্ভারে প্রজেক্ট চালু এবং রান করা
@@ -97,51 +78,40 @@ $password = '';                // XAMPP/WAMP এর ডিফল্ট পাস
 ২. আপনার প্রিয় ব্রাউজার (Google Chrome, Edge বা Firefox) ওপেন করুন।  
 ৩. নিচের লিঙ্কগুলোতে ভিজিট করুন:
 
-- **হোমপেজ (নিউজ লিস্ট ও সার্চ):**  
-  👉 [http://localhost/daily-city-desk](http://localhost/daily-city-desk)  
-  *(অথবা: `http://localhost/daily-city-desk/index.php`)*
+- **হোমপেজ (Daily Subarnachar লাইভ পোর্টাল ও সার্চ):**  
+  👉 [http://localhost/daily-subarnachar](http://localhost/daily-subarnachar)  
+  *(পূর্বের ইউআরএল: `http://localhost/daily-city-desk`)*
 
 - **নতুন নিউজ যুক্ত করার পেজ:**  
-  👉 [http://localhost/daily-city-desk/add.php](http://localhost/daily-city-desk/add.php)
+  👉 [http://localhost/daily-subarnachar/add.php](http://localhost/daily-subarnachar/add.php)
 
 - **JSON API এন্ডপয়েন্ট:**  
-  👉 [http://localhost/daily-city-desk/api/news.php](http://localhost/daily-city-desk/api/news.php)
+  👉 [http://localhost/daily-subarnachar/api/news.php](http://localhost/daily-subarnachar/api/news.php)
 
 ---
 
 ## ৬. ফিচারসমূহ এবং টেস্টিং গাইড
 
-### ক. নিউজ লিস্ট এবং ডেসক্রিপশন দেখা
-- হোমপেজে ডাটাবেজ থেকে স্বয়ংক্রিয়ভাবে সমস্ত নিউজ টাইটেল, ক্যাটাগরি ব্যাজ, রিপোর্টারের নাম, পাবলিশ ডেট এবং সম্পূর্ণ ডেসক্রিপশন কার্ড আকারে সুন্দরভাবে প্রদর্শিত হয়।
+### ক. প্রিমিয়াম এডিটোরিয়াল নিউজ ভিউ
+- আধুনিক কার্ড লেআউটে টাইটেল, ক্যাটাগরি ব্যাজ, রিপোর্টারের নাম, পাবলিকেশন ডেট এবং সংবাদের সম্পূর্ণ ডেসক্রিপশন পরিষ্কার ও দৃষ্টিনন্দনভাবে প্রদর্শিত হয়।
 
 ### খ. টাইটেল দিয়ে সার্চ টেস্ট
-১. হোমপেজের সার্চ বক্সে লিখুন: **`Flood Alert`**  
+১. হোমপেজের আধুনিক সার্চ বক্সে লিখুন: **`Flood Alert`**  
 ২. **Search** বাটনে ক্লিক করুন।  
 ৩. **ফলাফল:** শুধুমাত্র **City Flood Alert** নিউজটি প্রদর্শিত হবে, অন্য কোনো নিউজ আসবে না।  
-৪. পুরো লিস্ট ফিরে পেতে **Clear** বাটনে ক্লিক করুন।
+৪. পুরো লিস্টে ফিরে যেতে **Clear Search** বাটনে ক্লিক করুন।
 
 ### গ. নতুন নিউজ যোগ করা (`add.php`)
 ১. উপরের মেন্যু থেকে **Add News** এ যান।  
 ২. ফর্মে তথ্য দিন:
-   - **Title:** আপনার নিউজের শিরোনাম দিন।
-   - **Category:** ড্রপডাউন থেকে ক্যাটাগরি (National, Sports, Technology) সিলেক্ট করুন।
-   - **Reporter:** ড্রপডাউন থেকে রিপোর্টার (Amina Karim, Rafiq Islam) সিলেক্ট করুন।
-   - **Published Date:** তারিখ নির্বাচন করুন।
+   - **Headline / Title:** সংবাদের শিরোনাম দিন।
+   - **Category:** ড্রপডাউন থেকে ক্যাটাগরি সিলেক্ট করুন।
+   - **Reporter:** ড্রপডাউন থেকে রিপোর্টার সিলেক্ট করুন।
+   - **Publication Date:** তারিখ নির্বাচন করুন।
    - **Description:** বিস্তারিত সংবাদ লিখুন।
-৩. **Submit News** বাটনে ক্লিক করুন।  
+৩. **Publish News Article** বাটনে ক্লিক করুন।  
 ৪. সফল মেসেজ দেখাবে এবং হোমপেজে গিয়ে দেখতে পাবেন নতুন সংবাদটি যুক্ত হয়েছে।
 
 ### ঘ. JSON API এবং JavaScript Fetch
-- হোমপেজের নিচের দিকে আলাদাভাবে চিহ্নিত **"Loaded from the API"** সেকশন রয়েছে।
-- এটি পেজ লোড হওয়ার সাথে সাথে পেছনের জাভাস্ক্রিপ্ট `fetch('api/news.php')` এর মাধ্যমে রিয়েল-টাইমে ডাটাবেজ থেকে টাইটেল ও ক্যাটাগরি নিয়ে এসে আলাদাভাবে প্রদর্শন করে।
-
----
-
-## ৭. সম্ভাব্য সমস্যা ও সমাধান (Troubleshooting)
-
-| সমস্যা | কারণ | সমাধান |
-|---|---|---|
-| **Database connection failed** | MySQL বন্ধ আছে অথবা পাসওয়ার্ড ভুল | WAMP/XAMPP থেকে MySQL সার্ভিস স্টার্ট করুন এবং `config.php` এ ইউজার/পাসওয়ার্ড যাচাই করুন। |
-| **404 Not Found** | ফোল্ডার পাথ সঠিক নয় | নিশ্চিত করুন ফাইলগুলো `www/daily-city-desk` অথবা `htdocs/daily-city-desk` ফোল্ডারে আছে। |
-| **API Error in Console** | `api/news.php` পাথে ডাটাবেজ রিচ করতে পারছে না | সরাসরি `http://localhost/daily-city-desk/api/news.php` ব্রাউজারে রান করে এরর মেসেজ চেক করুন। |
-| **Special Characters/Tags Execute হচ্ছে** | XSS সুরক্ষা নেই | প্রজেক্টে আউটপুটের জন্য `htmlspecialchars()` ব্যবহার করা হয়েছে, যা ক্ষতিকর কোড বা স্ক্রিপ্ট এক্সিকিউট হতে বাধা দেয়। |
+- হোমপেজের নিচের দিকে আধুনিক ব্যাজ সহ **"Loaded from the API"** সেকশন রয়েছে।
+- এটি পেজ লোড হওয়ার সাথে সাথে পেছনের জাভাস্ক্রিপ্ট `fetch('api/news.php')` এর মাধ্যমে রিয়েল-টাইমে ডাটাবেজ থেকে টাইটেল ও ক্যাটাগরি গ্রিড আকারে প্রদর্শন করে।
